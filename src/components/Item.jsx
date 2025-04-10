@@ -1,20 +1,19 @@
-import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+ import 'bootstrap/dist/css/bootstrap.min.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export default function Item({remove, todo}){
-    const [done, setDone] = useState(false);
-    const style = done ? {textDecoration: 'line-through'} : {};
+export default function Item({ remove, toggleDone, todo }){
+    const { text, done } = todo;
+    const style = done ? { textDecoration: 'line-through' } : {};
 
     return( 
     <ListGroup.Item as="li" className='d-flex justify-content-between'>
         <div style={style}>
-            <button className='btn btn-outline removeBtn' onClick={() => setDone(!done)}>
+            <button className='btn btn-outline removeBtn' onClick={(toggleDone)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-minus-fill" viewBox="0 0 16 16">
                 <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 7.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1"/>
             </svg>
             </button>
-            {todo}
+            {text}
         </div> 
         <button className='btn btn-danger removeBtn' onClick={remove}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
@@ -23,4 +22,4 @@ export default function Item({remove, todo}){
             </svg>
         </button>
   </ListGroup.Item>);
-}
+} 
