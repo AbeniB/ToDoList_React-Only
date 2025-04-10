@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -17,7 +16,8 @@ export default function App(){
     setItem(value);
   }
 
-  function handleClick(e){
+  function handleClick(){
+    if (item.trim() === "") return;
     setList(prevValue => [...prevValue, item]);
     setItem("");
   }
@@ -47,3 +47,4 @@ export default function App(){
     </div>
   )
 }
+
