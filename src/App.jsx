@@ -22,10 +22,16 @@ export default function App(){
     setItem("");
   }
 
+
+  
   function deleteItem(i){
     const nValues = list.filter((e, index) => i !== index);
     setList(nValues);
   }
+
+ 
+  const doneCount = list.filter(item => item.done).length;
+  const todoCount = list.length - doneCount;
 
 
   return(
@@ -35,14 +41,15 @@ export default function App(){
         controlId="floatingInput"
         label="Todo"
       >
-        <Form.Control className='todoInput' type="text" placeholder='add todo' onChange={handleChange} value={item}/>
+        <Form.Control  className='todoInput' type="text" placeholder='add todo' onChange={handleChange} value={item}/>
       </FloatingLabel>
       <Button className='addItem btn-outline-light' onClick={handleClick}>Add Item</Button>
-      <List list={list} deleteItem={deleteItem}/>
-      <div className='counter d-flex justify-content-around py-2'>
+            <List list={list} deleteItem={deleteItem} />
+
+       <div className='counter d-flex justify-content-around py-2'>
         <span>Total Items: {list.length}</span>
-        <span> Todo: 0</span>
-        <span> Done: 0</span>
+        <span>Todo: {todoCount}</span>
+        <span>Done: {doneCount} </span>
       </div>
     </div>
   )
